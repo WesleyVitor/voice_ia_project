@@ -77,7 +77,6 @@ def route(result: AgentActionMessageLog | AgentFinish) -> str:
             "pay_invoice_request": pay_invoice_request,
             "make_invoice_request": make_invoice_request
         }
-        # return asyncio.run(
-        #     tools[result.tool].run(result.tool_input)
-        # )
-        return tools[result.tool].run(result.tool_input)
+        return asyncio.run(
+            tools[result.tool].ainvoke(result.tool_input)
+        )

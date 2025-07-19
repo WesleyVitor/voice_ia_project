@@ -1,2 +1,6 @@
-nostr-sdk=0.42.1
-python-dotenv=1.1.1
+nostr-sdk==0.42.1
+python-dotenv==1.1.1
+pydantic==2.11.7
+openai==1.97.0
+langchain==0.3.26
+langchain-community==0.3.27

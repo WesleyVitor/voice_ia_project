@@ -2,11 +2,11 @@ import gradio as gr
 from use_case import AudioHandlerUseCase
 
 def handle_audio(file_path):
-    
+    output = ""
     with open(file_path, "rb") as f:
         audio_handler = AudioHandlerUseCase()
-        audio_handler.handle_audio(f)
-    return file_path  
+        output = audio_handler.handle_audio(f)
+    return output  
 
 input_audio = gr.Audio(
     sources=["microphone"],
@@ -20,10 +20,12 @@ input_audio = gr.Audio(
     ),
 )
 
+output = gr.Textbox(label="Output")
+
 demo = gr.Interface(
     fn=handle_audio,
     inputs=input_audio,
-    outputs=gr.Audio(label="Reproduzir áudio gravado")
+    outputs=output
 )
 
 demo.launch(share=False)

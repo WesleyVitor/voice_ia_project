@@ -37,4 +37,4 @@ class AudioHandlerUseCase:
 
         #print(translation.text)
         res = chain.invoke({"input": translation.text})
-        print(res)
+        return res

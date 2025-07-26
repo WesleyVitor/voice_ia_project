@@ -24,37 +24,37 @@ async def get_balance_from_nostr() -> str:
     Get the balance of the Nostr wallet.
     """
     
-    # balance = await nwc.get_balance()
-    # return f"{balance} mSAT"
-    return "72 mSAT"
+    #return "72 mSAT"
+    balance = await nwc.get_balance()
+    return f"{balance} mSAT"
 
 @tool(args_schema=PayInvoiceRequest)
 async def pay_invoice_request(bolt11_str: str) -> str:
     """
     Pay an invoice with the given bolt11 string.
     """
-    # pay_req = PayInvoiceRequest(invoice=bolt11_str)
-    # pay_res = await nwc.pay_invoice(pay_req)
-    # return f"Payment successful: {pay_res}"
-    return "OK, invoice paid successfully."
+    #return "OK, invoice paid successfully."
+    pay_req = PayInvoiceRequest(invoice=bolt11_str)
+    pay_res = await nwc.pay_invoice(pay_req)
+    return f"Payment successful: {pay_res}"
 
 @tool(args_schema=MakeInvoiceRequest)
 async def make_invoice_request(amount: int):
     """
     Create an invoice for the given amount.
     """
-    # if amount < 0:
-    #     return "Amount must be a positive integer."
+    #return f"Invoice created for {amount} mSAT."
+    if amount < 0:
+        return "Amount must be a positive integer."
     
-    # create_req = MakeInvoiceRequest(
-    #     amount=amount,  #msat 1000 = 1 sat = 0.00000001 btc
-    #     description=None, 
-    #     description_hash=None, 
-    #     expiry=None
-    # )
-    # create_res = await nwc.make_invoice(create_req)
-    # return create_res.invoice if create_res.invoice else "Invoice creation failed."
-    return f"Invoice created for {amount} mSAT."
+    create_req = MakeInvoiceRequest(
+        amount=amount,  #msat 1000 = 1 sat = 0.00000001 btc
+        description=None, 
+        description_hash=None, 
+        expiry=None
+    )
+    create_res = await nwc.make_invoice(create_req)
+    return create_res.invoice if create_res.invoice else "Invoice creation failed."
     
 
 
